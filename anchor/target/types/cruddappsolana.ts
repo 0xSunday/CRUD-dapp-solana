@@ -138,14 +138,14 @@ export type Cruddappsolana = {
     {
       "name": "cruddappsolana",
       "discriminator": [
-        255,
-        176,
-        4,
-        245,
-        188,
-        253,
-        124,
-        25
+        91,
+        37,
+        154,
+        19,
+        229,
+        18,
+        166,
+        37
       ]
     }
   ],
