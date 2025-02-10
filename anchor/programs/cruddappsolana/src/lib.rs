@@ -15,11 +15,17 @@ pub mod cruddappsolana {
         title: String,
         message: String,
     ) -> Result<()> {
-        let jouranl_entry = &mut ctx.accounts.journal_entry;
-        jouranl_entry.owner = *ctx.accounts.owner.key;
-        jouranl_entry.title = title;
-        jouranl_entry.message = message;
-        Ok(());
+        let journal_entry = &mut ctx.accounts.journal_entry;
+        journal_entry.owner = *ctx.accounts.owner.key;
+        journal_entry.title = title;
+        journal_entry.message = message;
+        Ok(())
+    }
+
+    pub fn update_journal_entry(ctx: Context<UpdateEntry>,title:String, message: String) -> Result<()> {
+        let journal_entry = &mut ctx.accounts.journal_entry;
+        journal_entry.message = message;
+        Ok(())
     }
 }
 
@@ -39,6 +45,25 @@ pub struct CreateEntry<'info> {
     pub owner: Signer<'info>,
 
     pub system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+#[instruction(title:String)]
+pub struct UpdateEntry<'info> {
+    #[account(
+    mut,
+    seeds = [title.as_bytes(), owner.key().as_ref()],
+    bump,
+    realloc = 8+ journalEntryState::INIT_SPACE,
+    realloc::payer = owner,
+    realloc::zero = true,
+ )]
+    pub journal_entry: Account<'info, journalEntryState>,
+
+    #[account(mut)]
+    pub owner: Signer<'info>,
+
+    pub system_program: Program<'info, System>, 
 }
 
 #[account]
