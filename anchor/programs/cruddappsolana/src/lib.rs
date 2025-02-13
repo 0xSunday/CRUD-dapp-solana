@@ -3,7 +3,7 @@
 use anchor_lang::prelude::*;
 
 declare_id!("65H93CWZF6dzCNYASKgqTgR5mFAMiVaPSvdYqqjVHKUe");
-
+// npm run dev witthout error
 #[program]
 pub mod cruddappsolana {
     use anchor_lang::context;
