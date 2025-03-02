@@ -36,6 +36,7 @@ describe('cruddappsolana', () => {
     expect(currentCount.count).toEqual(1)
   })
 
+  
   it('Increment Cruddappsolana Again', async () => {
     await program.methods.increment().accounts({ cruddappsolana: cruddappsolanaKeypair.publicKey }).rpc()
 
@@ -52,6 +53,7 @@ describe('cruddappsolana', () => {
     expect(currentCount.count).toEqual(1)
   })
 
+
   it('Set cruddappsolana value', async () => {
     await program.methods.set(42).accounts({ cruddappsolana: cruddappsolanaKeypair.publicKey }).rpc()
 
@@ -59,6 +61,7 @@ describe('cruddappsolana', () => {
 
     expect(currentCount.count).toEqual(42)
   })
+
 
   it('Set close the cruddappsolana account', async () => {
     await program.methods
@@ -74,3 +77,4 @@ describe('cruddappsolana', () => {
     expect(userAccount).toBeNull()
   })
 })
+
